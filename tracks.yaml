@@ -12,7 +12,7 @@ tracks:
     last_version: 4.1.1
     name: stage
     patches: hydro
-    release_inc: '2'
+    release_inc: '3'
     release_repo_url: null
     release_tag: v:{version}
     ros_distro: hydro
