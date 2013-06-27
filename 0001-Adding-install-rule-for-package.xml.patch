@@ -1,0 +1,26 @@
+From e6d94c22bb5cbb0d86fe8da0a968fc91ad8a0855 Mon Sep 17 00:00:00 2001
+From: William Woodall <william@osrfoundation.org>
+Date: Wed, 26 Jun 2013 19:42:32 -0700
+Subject: [PATCH] Adding install rule for package.xml
+
+---
+ CMakeLists.txt | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 8710637..cdc5476 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -138,6 +138,9 @@ ENDIF( PLAYER_FOUND )
+ CONFIGURE_FILE (${CMAKE_CURRENT_SOURCE_DIR}/stage.pc.in ${CMAKE_CURRENT_BINARY_DIR}/stage.pc @ONLY)
+ INSTALL (FILES ${CMAKE_CURRENT_BINARY_DIR}/stage.pc DESTINATION ${PROJECT_LIB_DIR}/pkgconfig/)
+ 
++# Install catkin package.xml
++install(FILES package.xml DESTINATION share/stage)
++
+ MESSAGE( STATUS "Installation path CMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}" )
+ 
+ # all targets need these include directories
+-- 
+1.7.12.4 (Apple Git-37)
+
