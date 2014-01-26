@@ -1,3 +1,22 @@
+## stage - 4.1.1-5
+
+User `william@dosa.local` released the packages in the `stage` repository by running `/usr/local/bin/bloom-release -r hydro -t hydro stage` on `Sun, 26 Jan 2014 20:22:41 -0000`
+
+The `stage` package was released.
+
+Version of package(s) in repository `stage`:
+- rosdistro version: `4.1.1-4`
+- old version: `4.1.1-4`
+- new version: `4.1.1-5`
+
+Versions of tools used:
+- bloom version: `0.4.7`
+- catkin_pkg version: `0.1.25`
+- rosdep version: `0.10.25`
+- rosdistro version: `0.3.0`
+- vcstools version: `0.1.33`
+
+
 ## stage - 4.1.1-4
 
 User `william@eatable` released the packages in the `stage` repository by running `/usr/bin/bloom-release -t hydro -r hydro stage` on `Thu, 27 Jun 2013 20:44:51 -0000`
