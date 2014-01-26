@@ -60,6 +60,11 @@ extern PlayerTime* GlobalTime;
 
 #define DRIVER_ERROR(X) printf( "Stage driver error: %s\n", X )
 
+#ifndef PLAYER_CAPABILITIES_REQ
+#ifdef PLAYER_CAPABILTIES_REQ
+#define PLAYER_CAPABILITIES_REQ PLAYER_CAPABILTIES_REQ
+#endif
+#endif
 
 ////////////////////////////////////////////////////////////////////////////////////
 
