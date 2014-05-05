@@ -1,3 +1,22 @@
+## stage (indigo) - 4.1.1-0
+
+The packages in the `stage` repository were released into the `indigo` distro by running `/usr/local/bin/bloom-release -r indigo -t indigo -e stage` on `Mon, 05 May 2014 18:59:50 -0000`
+
+The `stage` package was released.
+
+Version of package(s) in repository `stage`:
+- rosdistro version: `null`
+- old version: `null`
+- new version: `4.1.1-0`
+
+Versions of tools used:
+- bloom version: `0.5.5`
+- catkin_pkg version: `0.2.2`
+- rosdep version: `0.10.27`
+- rosdistro version: `0.3.5`
+- vcstools version: `0.1.33`
+
+
 ## stage (hydro) - 4.1.1-6
 
 User `william@dosa` released the packages in the `stage` repository into the `hydro` distro by running `/usr/local/bin/bloom-release -r hydro -t hydro stage` on `Fri, 14 Mar 2014 21:13:03 -0000`
