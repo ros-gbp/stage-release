@@ -29,14 +29,14 @@
   <buildtool_depend>pkg-config</buildtool_depend>
 
   <build_depend>gtk2</build_depend>
-  <build_depend>fltk</build_depend>
+  <build_depend>libfltk-dev</build_depend>
   <build_depend>libjpeg</build_depend>
   <build_depend>libtool</build_depend>
   <build_depend>opengl</build_depend>
 
   <run_depend>catkin</run_depend>
   <run_depend>gtk2</run_depend>
-  <run_depend>fltk</run_depend>
+  <run_depend>fluid</run_depend>
   <run_depend>libjpeg</run_depend>
   <run_depend>opengl</run_depend>
 
