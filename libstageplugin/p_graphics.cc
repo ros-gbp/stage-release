@@ -232,8 +232,10 @@ int InterfaceGraphics2d::ProcessMessage(QueuePointer & resp_queue,
 			PLAYER_GRAPHICS2D_CMD_POINTS, this->addr)
 			|| Message::MatchMessage(hdr, PLAYER_MSGTYPE_CMD,
 					PLAYER_GRAPHICS2D_CMD_POLYLINE, this->addr)
+#ifdef PLAYER_GRAPHICS2D_CMD_MULTILINE
 			|| Message::MatchMessage(hdr, PLAYER_MSGTYPE_CMD,
                                         PLAYER_GRAPHICS2D_CMD_MULTILINE, this->addr)
+#endif
 			|| Message::MatchMessage(hdr, PLAYER_MSGTYPE_CMD,
 					PLAYER_GRAPHICS2D_CMD_POLYGON, this->addr)) {
 		Message msg(*hdr, data);
@@ -274,6 +276,7 @@ void PlayerGraphics2dVis::RenderItem(Message & item) {
 	}
 		break;
 
+#ifdef PLAYER_GRAPHICS2D_CMD_MULTILINE
         case PLAYER_GRAPHICS2D_CMD_MULTILINE: {
                 player_graphics2d_cmd_multiline_t
                                 & data =
@@ -285,6 +288,7 @@ void PlayerGraphics2dVis::RenderItem(Message & item) {
                 glEnd();
         }
                 break;
+#endif
 
 
 
