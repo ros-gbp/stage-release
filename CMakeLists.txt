@@ -102,7 +102,6 @@ ELSE( PNG_FOUND )
    MESSAGE( ${INDENT} "PNG library not detected" )
 ENDIF( PNG_FOUND )
    
-set (FLTK_SKIP_FLUID TRUE)
 find_package( FLTK REQUIRED )
 IF( FLTK_FOUND )
 #  MESSAGE( STATUS ${INDENT} "FLTK_LIBRARIES=${FLTK_LIBRARIES}" )
@@ -138,9 +137,6 @@ ENDIF( PLAYER_FOUND )
 # Create the pkgconfig file
 CONFIGURE_FILE (${CMAKE_CURRENT_SOURCE_DIR}/stage.pc.in ${CMAKE_CURRENT_BINARY_DIR}/stage.pc @ONLY)
 INSTALL (FILES ${CMAKE_CURRENT_BINARY_DIR}/stage.pc DESTINATION ${PROJECT_LIB_DIR}/pkgconfig/)
-
-# Install catkin package.xml
-install(FILES package.xml DESTINATION share/stage)
 
 MESSAGE( STATUS "Installation path CMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}" )
 
