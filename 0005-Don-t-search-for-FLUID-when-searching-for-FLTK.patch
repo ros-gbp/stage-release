@@ -1,7 +1,7 @@
-From fd9f5441c3c2ec34d4b0667336ac109fe3368045 Mon Sep 17 00:00:00 2001
+From 2f81a46e5690af1afe5daf21775fdc34f61ce643 Mon Sep 17 00:00:00 2001
 From: Rich Mattes <richmattes@gmail.com>
 Date: Mon, 23 Mar 2015 18:53:12 -0400
-Subject: [PATCH 5/5] Don't search for FLUID when searching for FLTK
+Subject: [PATCH 5/6] Don't search for FLUID when searching for FLTK
 
 Stage doesn't need FLUID to be available during build time, but the
 CMake FindFLTK package searches for it by default in newer versions.
@@ -23,5 +23,5 @@ index cdc5476..39add53 100644
  IF( FLTK_FOUND )
  #  MESSAGE( STATUS ${INDENT} "FLTK_LIBRARIES=${FLTK_LIBRARIES}" )
 -- 
-1.9.5 (Apple Git-50.3)
+2.3.2 (Apple Git-55)
 

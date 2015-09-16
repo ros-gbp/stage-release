@@ -1,0 +1,104 @@
+From 2f4471189f4719ae15cc98e68b927d52a90fe049 Mon Sep 17 00:00:00 2001
+From: William Woodall <william@osrfoundation.org>
+Date: Wed, 16 Sep 2015 14:19:55 -0700
+Subject: [PATCH 6/6] importing change
+ https://github.com/rtv/Stage/commit/54555de9b935ab1a328a9f321a6919c2b1fa6c79
+ from upstream
+
+---
+ CMakeLists.txt                | 21 +++++++++++++++++++++
+ stage-config-version.cmake.in | 11 +++++++++++
+ stage-config.cmake.in         | 14 ++++++++++++++
+ stage.pc.in                   |  4 ++--
+ 4 files changed, 48 insertions(+), 2 deletions(-)
+ create mode 100644 stage-config-version.cmake.in
+ create mode 100644 stage-config.cmake.in
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 39add53..ffd6cc1 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -135,10 +135,31 @@ ELSE( PLAYER_FOUND )
+   MESSAGE(STATUS ${INDENT} "Player not detected. If Player is installed but not detected, check your PKG_CONFIG_PATH." )
+ ENDIF( PLAYER_FOUND )
+ 
++# Format the fltk libraries for inclusion in stage.pc
++SET(PC_LIBRARIES ${FLTK_LIBRARIES} ${OPENGL_LIBRARIES})
++SET(PC_INCLUDE_DIRS ${FLTK_INCLUDE_DIR} ${OPENGL_INCLUDE_DIR})
++
++SET(PC_LINK_FLAGS "")
++FOREACH(LIB ${PC_LIBRARIES})
++  GET_FILENAME_COMPONENT(LIBNAME ${LIB} NAME_WE)
++  STRING(REGEX REPLACE "^lib" "" LINKLIB ${LIBNAME})
++  SET(PC_LINK_FLAGS "${PC_LINK_FLAGS} -l${LINKLIB}")
++ENDFOREACH(LIB ${FLTK_LIBRARIES})
++
++SET(PC_INCLUDE_FLAGS "")
++FOREACH(INC ${PC_INCLUDE_DIRS})
++  SET(PC_INCLUDE_FLAGS "${PC_INCLUDE_FLAGS} -I${INC}")
++ENDFOREACH(INC ${PC_INCLUDE_DIRS})
++
+ # Create the pkgconfig file
+ CONFIGURE_FILE (${CMAKE_CURRENT_SOURCE_DIR}/stage.pc.in ${CMAKE_CURRENT_BINARY_DIR}/stage.pc @ONLY)
+ INSTALL (FILES ${CMAKE_CURRENT_BINARY_DIR}/stage.pc DESTINATION ${PROJECT_LIB_DIR}/pkgconfig/)
+ 
++# Create the CMake module files
++CONFIGURE_FILE (${CMAKE_CURRENT_SOURCE_DIR}/stage-config.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/stage-config.cmake @ONLY)
++CONFIGURE_FILE (${CMAKE_CURRENT_SOURCE_DIR}/stage-config-version.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/stage-config-version.cmake @ONLY)
++INSTALL (FILES ${CMAKE_CURRENT_BINARY_DIR}/stage-config.cmake ${CMAKE_CURRENT_BINARY_DIR}/stage-config-version.cmake DESTINATION ${PROJECT_LIB_DIR}/cmake/${PROJECT_NAME})
++
+ # Install catkin package.xml
+ install(FILES package.xml DESTINATION share/stage)
+ 
+diff --git a/stage-config-version.cmake.in b/stage-config-version.cmake.in
+new file mode 100644
+index 0000000..519fd68
+--- /dev/null
++++ b/stage-config-version.cmake.in
+@@ -0,0 +1,11 @@
++set(PACKAGE_VERSION "@VERSION@")
++ 
++# Check whether the requested PACKAGE_FIND_VERSION is compatible
++if("${PACKAGE_VERSION}" VERSION_LESS "${PACKAGE_FIND_VERSION}")
++  set(PACKAGE_VERSION_COMPATIBLE FALSE)
++else()
++  set(PACKAGE_VERSION_COMPATIBLE TRUE)
++  if ("${PACKAGE_VERSION}" VERSION_EQUAL "${PACKAGE_FIND_VERSION}")
++    set(PACKAGE_VERSION_EXACT TRUE)
++  endif()
++endif()
+diff --git a/stage-config.cmake.in b/stage-config.cmake.in
+new file mode 100644
+index 0000000..6bf3f71
+--- /dev/null
++++ b/stage-config.cmake.in
+@@ -0,0 +1,14 @@
++# - Config file for Stage
++# It defines the following variables:
++#    STAGE_INCLUDE_DIRS - Stage Include directories
++#    STAGE_LIBRARIES    - Stage link libraries
++
++set(STAGE_INCLUDE_DIRS "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME@-@APIVERSION@" 
++  "@FLTK_INCLUDE_DIR@"
++  "@OPENGL_INCLUDE_DIR@")
++list(REMOVE_DUPLICATES STAGE_INCLUDE_DIRS)
++set(STAGE_LIBRARIES 
++  "@CMAKE_INSTALL_PREFIX@/@PROJECT_LIB_DIR@/libstage.so"
++  "@FLTK_LIBRARIES@"
++  "@OPENGL_gl_LIBRARIES@")
++  
+diff --git a/stage.pc.in b/stage.pc.in
+index 8d63f01..c74bde2 100644
+--- a/stage.pc.in
++++ b/stage.pc.in
+@@ -10,5 +10,5 @@ Version: @VERSION@
+ # add the incantations to the flags and libs lines below 
+ Requires:
+ 
+-Libs: -L${prefix}/@PROJECT_LIB_DIR@ -lstage @FLTK_LDFLAGS@
+-Cflags: -I${prefix}/include/Stage-@APIVERSION@ @FLTK_CFLAGS@ 
++Libs: -L${prefix}/@PROJECT_LIB_DIR@ -lstage @PC_LINK_FLAGS@
++Cflags: -I${prefix}/include/Stage-@APIVERSION@ @PC_INCLUDE_FLAGS@
+-- 
+2.3.2 (Apple Git-55)
+
