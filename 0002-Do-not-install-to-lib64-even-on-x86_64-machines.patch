@@ -1,7 +1,7 @@
-From 02dbebd2cd1d9cd1c9dc2f142ba51400782cf8ee Mon Sep 17 00:00:00 2001
+From 9cc47d32900157f1a0f04e3713dc36a463d63935 Mon Sep 17 00:00:00 2001
 From: William Woodall <william@osrfoundation.org>
 Date: Thu, 27 Jun 2013 13:35:25 -0700
-Subject: [PATCH 2/5] Do not install to lib64, even on x86_64 machines
+Subject: [PATCH 2/6] Do not install to lib64, even on x86_64 machines
 
 ---
  cmake/internal/FindOS.cmake | 36 ++++++++++++++++++------------------
@@ -59,5 +59,5 @@ index cec4491..5666bbc 100644
  MESSAGE(STATUS "Installing Libraries to ${CMAKE_INSTALL_PREFIX}/${PROJECT_LIB_DIR}")
  MESSAGE(STATUS "Installing Plugins to ${CMAKE_INSTALL_PREFIX}/${PROJECT_PLUGIN_DIR}")
 -- 
-1.9.5 (Apple Git-50.3)
+2.3.2 (Apple Git-55)
 
