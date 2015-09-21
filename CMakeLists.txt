@@ -156,7 +156,11 @@ CONFIGURE_FILE (${CMAKE_CURRENT_SOURCE_DIR}/stage.pc.in ${CMAKE_CURRENT_BINARY_D
 INSTALL (FILES ${CMAKE_CURRENT_BINARY_DIR}/stage.pc DESTINATION ${PROJECT_LIB_DIR}/pkgconfig/)
 
 # Create the CMake module files
-CONFIGURE_FILE (${CMAKE_CURRENT_SOURCE_DIR}/stage-config.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/stage-config.cmake @ONLY)
+CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/stage-config.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/stage-config.cmake @ONLY)
+# Also run it through file(GENERATE ...) to expand generator expressions.
+FILE (GENERATE
+  OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/stage-config.cmake
+  INPUT ${CMAKE_CURRENT_BINARY_DIR}/stage-config.cmake)
 CONFIGURE_FILE (${CMAKE_CURRENT_SOURCE_DIR}/stage-config-version.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/stage-config-version.cmake @ONLY)
 INSTALL (FILES ${CMAKE_CURRENT_BINARY_DIR}/stage-config.cmake ${CMAKE_CURRENT_BINARY_DIR}/stage-config-version.cmake DESTINATION ${PROJECT_LIB_DIR}/cmake/${PROJECT_NAME})
 
