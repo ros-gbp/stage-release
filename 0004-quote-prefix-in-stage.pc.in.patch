@@ -1,7 +1,7 @@
-From 8a1eae334f94d650701eb3fa6f8e4ff9c1980b3b Mon Sep 17 00:00:00 2001
+From 2bfadc670c5a4f57cc857f08861ff7ea80b2af33 Mon Sep 17 00:00:00 2001
 From: William Woodall <wjwwood@gmail.com>
 Date: Fri, 14 Mar 2014 13:02:12 -0700
-Subject: [PATCH 4/6] quote prefix in stage.pc.in
+Subject: [PATCH 4/7] quote prefix in stage.pc.in
 
 ---
  stage.pc.in | 2 +-
@@ -18,5 +18,5 @@ index 873fd27..8d63f01 100644
  Name: stage
  Description: Stage robot simulation program, C++ library and Player plugin - part of the Player Project (http://playerstage.org)
 -- 
-2.3.2 (Apple Git-55)
+2.3.8 (Apple Git-58)
 
