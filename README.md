@@ -1,3 +1,24 @@
+## stage (indigo) - 4.1.1-7
+
+The packages in the `stage` repository were released into the `indigo` distro by running `/usr/local/bin/bloom-release -r indigo -t indigo stage` on `Tue, 22 Sep 2015 21:06:47 -0000`
+
+The `stage` package was released.
+
+Version of package(s) in repository `stage`:
+- upstream repository: https://github.com/rtv/Stage.git
+- release repository: https://github.com/ros-gbp/stage-release.git
+- rosdistro version: `4.1.1-6`
+- old version: `4.1.1-6`
+- new version: `4.1.1-7`
+
+Versions of tools used:
+- bloom version: `0.5.20`
+- catkin_pkg version: `0.2.10`
+- rosdep version: `0.11.2`
+- rosdistro version: `0.4.2`
+- vcstools version: `0.1.37`
+
+
 ## stage (jade) - 4.1.1-4
 
 The packages in the `stage` repository were released into the `jade` distro by running `/usr/local/bin/bloom-release -r jade -t jade stage` on `Mon, 21 Sep 2015 23:12:34 -0000`
