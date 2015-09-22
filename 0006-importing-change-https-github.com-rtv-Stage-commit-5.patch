@@ -1,7 +1,7 @@
-From 6f2da2d576b82fb8866f5ca1a0a718ab37ea248f Mon Sep 17 00:00:00 2001
+From 6b7f276c75186a8f6b931d083e607cb327de8e2e Mon Sep 17 00:00:00 2001
 From: William Woodall <william@osrfoundation.org>
 Date: Wed, 16 Sep 2015 14:19:55 -0700
-Subject: [PATCH 6/7] importing change
+Subject: [PATCH 6/8] importing change
  https://github.com/rtv/Stage/commit/54555de9b935ab1a328a9f321a6919c2b1fa6c79
  from upstream
 

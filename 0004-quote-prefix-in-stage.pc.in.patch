@@ -1,7 +1,7 @@
-From ee950882089f8138229ad5eb66e303837cb9f396 Mon Sep 17 00:00:00 2001
+From 3e71b80e84085d8fd65cf3f7f4957efeb4633b4f Mon Sep 17 00:00:00 2001
 From: William Woodall <wjwwood@gmail.com>
 Date: Fri, 14 Mar 2014 13:02:12 -0700
-Subject: [PATCH 4/7] quote prefix in stage.pc.in
+Subject: [PATCH 4/8] quote prefix in stage.pc.in
 
 ---
  stage.pc.in | 2 +-

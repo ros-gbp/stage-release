@@ -1,7 +1,7 @@
-From c66d2c65dccf982b74f15c061599c515047f2143 Mon Sep 17 00:00:00 2001
+From b6221938f58ef6a662f6f9ab69c244255b6412eb Mon Sep 17 00:00:00 2001
 From: William Woodall <william@osrfoundation.org>
 Date: Thu, 27 Jun 2013 13:35:25 -0700
-Subject: [PATCH 2/7] Do not install to lib64, even on x86_64 machines
+Subject: [PATCH 2/8] Do not install to lib64, even on x86_64 machines
 
 ---
  cmake/internal/FindOS.cmake | 36 ++++++++++++++++++------------------
