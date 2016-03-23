@@ -1,7 +1,7 @@
-From 1f0d1bd9a657d2af785113cebab36359d064d0cc Mon Sep 17 00:00:00 2001
+From e19bd8811dde31bda7f54f28ff0ecb2ad2986181 Mon Sep 17 00:00:00 2001
 From: William Woodall <william@osrfoundation.org>
-Date: Mon, 21 Sep 2015 13:16:14 -0700
-Subject: [PATCH 48/70] fix compiling on OS X
+Date: Mon, 21 Sep 2015 14:19:55 -0700
+Subject: [PATCH 7/9] fix compiling on OS X
 
 ---
  CMakeLists.txt        | 6 +++++-
