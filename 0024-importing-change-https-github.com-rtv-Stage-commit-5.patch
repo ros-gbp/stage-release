@@ -1,7 +1,7 @@
-From d1de0e7898b69d31ceda6959ef7d61f8ec5db723 Mon Sep 17 00:00:00 2001
+From 32d5ffcd34a8a637271ccec09ea1004cf738e7e1 Mon Sep 17 00:00:00 2001
 From: William Woodall <william@osrfoundation.org>
 Date: Wed, 16 Sep 2015 14:19:55 -0700
-Subject: [PATCH 6/9] importing change
+Subject: [PATCH 24/70] importing change
  https://github.com/rtv/Stage/commit/54555de9b935ab1a328a9f321a6919c2b1fa6c79
  from upstream
 
@@ -100,5 +100,5 @@ index 8d63f01..c74bde2 100644
 +Libs: -L${prefix}/@PROJECT_LIB_DIR@ -lstage @PC_LINK_FLAGS@
 +Cflags: -I${prefix}/include/Stage-@APIVERSION@ @PC_INCLUDE_FLAGS@
 -- 
-2.3.8 (Apple Git-58)
+2.6.4 (Apple Git-63)
 

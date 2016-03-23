@@ -1,7 +1,7 @@
 From 38797652a7fa6ac14e248444d8929b14392f3395 Mon Sep 17 00:00:00 2001
 From: William Woodall <william@osrfoundation.org>
 Date: Wed, 23 Sep 2015 18:48:46 -0700
-Subject: [PATCH 9/9] fix stage config file (even for saucy)
+Subject: [PATCH 63/70] fix stage config file (even for saucy)
 
 ---
  CMakeLists.txt        | 28 +++++++++++++++++++---------
@@ -68,5 +68,5 @@ index 8683807..676157c 100644
    "@OPENGL_gl_LIBRARIES@")
    
 -- 
-2.3.8 (Apple Git-58)
+2.6.4 (Apple Git-63)
 

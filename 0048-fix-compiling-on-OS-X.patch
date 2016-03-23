@@ -1,7 +1,7 @@
-From cb53edf3ac3646a90dbce25de8b7ae39cc93eb7d Mon Sep 17 00:00:00 2001
+From 1f0d1bd9a657d2af785113cebab36359d064d0cc Mon Sep 17 00:00:00 2001
 From: William Woodall <william@osrfoundation.org>
 Date: Mon, 21 Sep 2015 13:16:14 -0700
-Subject: [PATCH 7/9] fix compiling on OS X
+Subject: [PATCH 48/70] fix compiling on OS X
 
 ---
  CMakeLists.txt        | 6 +++++-
@@ -39,5 +39,5 @@ index 6bf3f71..6b60ce6 100644
    "@OPENGL_gl_LIBRARIES@")
    
 -- 
-2.3.8 (Apple Git-58)
+2.6.4 (Apple Git-63)
 
