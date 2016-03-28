@@ -102,7 +102,6 @@ ELSE( PNG_FOUND )
    MESSAGE( ${INDENT} "PNG library not detected" )
 ENDIF( PNG_FOUND )
    
-set (FLTK_SKIP_FLUID TRUE)
 find_package( FLTK REQUIRED )
 IF( FLTK_FOUND )
 #  MESSAGE( STATUS ${INDENT} "FLTK_LIBRARIES=${FLTK_LIBRARIES}" )
@@ -135,28 +134,9 @@ ELSE( PLAYER_FOUND )
   MESSAGE(STATUS ${INDENT} "Player not detected. If Player is installed but not detected, check your PKG_CONFIG_PATH." )
 ENDIF( PLAYER_FOUND )
 
-# Format the fltk libraries for inclusion in stage.pc
-SET(PC_LIBRARIES ${FLTK_LIBRARIES} ${OPENGL_LIBRARIES})
-SET(PC_INCLUDE_DIRS ${FLTK_INCLUDE_DIR} ${OPENGL_INCLUDE_DIR})
-
-SET(PC_LINK_FLAGS "")
-FOREACH(LIB ${PC_LIBRARIES})
-  GET_FILENAME_COMPONENT(LIBNAME ${LIB} NAME_WE)
-  STRING(REGEX REPLACE "^lib" "" LINKLIB ${LIBNAME})
-  SET(PC_LINK_FLAGS "${PC_LINK_FLAGS} -l${LINKLIB}")
-ENDFOREACH(LIB ${FLTK_LIBRARIES})
-
-SET(PC_INCLUDE_FLAGS "")
-FOREACH(INC ${PC_INCLUDE_DIRS})
-  SET(PC_INCLUDE_FLAGS "${PC_INCLUDE_FLAGS} -I${INC}")
-ENDFOREACH(INC ${PC_INCLUDE_DIRS})
-
 # Create the pkgconfig file
 CONFIGURE_FILE (${CMAKE_CURRENT_SOURCE_DIR}/stage.pc.in ${CMAKE_CURRENT_BINARY_DIR}/stage.pc @ONLY)
 INSTALL (FILES ${CMAKE_CURRENT_BINARY_DIR}/stage.pc DESTINATION ${PROJECT_LIB_DIR}/pkgconfig/)
-
-# Install catkin package.xml
-install(FILES package.xml DESTINATION share/stage)
 
 MESSAGE( STATUS "Installation path CMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}" )
 
@@ -182,25 +162,6 @@ IF ( BUILD_PLAYER_PLUGIN AND PLAYER_FOUND )
   ADD_SUBDIRECTORY(libstageplugin)
 ENDIF ( BUILD_PLAYER_PLUGIN AND PLAYER_FOUND )	 
 
-# Create the CMake module files (needs to be run after the stage target was created)
-if (${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}.${CMAKE_PATCH_VERSION} GREATER 2.8.11)
-  # Use a generator expression if the version of cmake allows it.
-  set(STAGE_TARGET_NAME "$<TARGET_FILE_NAME:stage>")
-else()
-  # Otherwise use the LOCATION property of the target (this will produce a warning on newer versions of cmake)
-  get_property(location_ TARGET stage PROPERTY LOCATION)
-  get_filename_component(STAGE_TARGET_NAME "${location_}" NAME)
-  unset(location_)
-endif()
-CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/stage-config.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/stage-config.cmake @ONLY)
-if (${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}.${CMAKE_PATCH_VERSION} GREATER 2.8.11)
-  # Also run it through file(GENERATE ...) to expand generator expressions (if the version of cmake supports it).
-  FILE (GENERATE
-    OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/stage-config.cmake
-    INPUT ${CMAKE_CURRENT_BINARY_DIR}/stage-config.cmake)
-endif()
-CONFIGURE_FILE (${CMAKE_CURRENT_SOURCE_DIR}/stage-config-version.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/stage-config-version.cmake @ONLY)
-INSTALL (FILES ${CMAKE_CURRENT_BINARY_DIR}/stage-config.cmake ${CMAKE_CURRENT_BINARY_DIR}/stage-config-version.cmake DESTINATION ${PROJECT_LIB_DIR}/cmake/${PROJECT_NAME})
 
 # generate a cpack config file used to create packaged tarballs
 IF ( CPACK_CFG )
