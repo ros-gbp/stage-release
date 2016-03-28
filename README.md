@@ -1,3 +1,26 @@
+## stage (kinetic) - 4.1.1-1
+
+The packages in the `stage` repository were released into the `kinetic` distro by running `/usr/local/bin/bloom-release -r kinetic -t kinetic stage` on `Mon, 28 Mar 2016 19:06:29 -0000`
+
+The `stage` package was released.
+
+Version of package(s) in repository `stage`:
+
+- upstream repository: https://github.com/rtv/Stage.git
+- release repository: https://github.com/ros-gbp/stage-release.git
+- rosdistro version: `4.1.1-0`
+- old version: `4.1.1-0`
+- new version: `4.1.1-1`
+
+Versions of tools used:
+
+- bloom version: `0.5.21`
+- catkin_pkg version: `0.2.10`
+- rosdep version: `0.11.4`
+- rosdistro version: `0.4.4`
+- vcstools version: `0.1.38`
+
+
 ## stage (kinetic) - 4.1.1-0
 
 The packages in the `stage` repository were released into the `kinetic` distro by running `/usr/local/bin/bloom-release -r kinetic -t kinetic stage` on `Wed, 23 Mar 2016 22:53:38 -0000`
