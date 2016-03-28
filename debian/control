@@ -1,0 +1,12 @@
+Source: ros-kinetic-stage
+Section: misc
+Priority: extra
+Maintainer: William Woodall <william@osrfoundation.org>
+Build-Depends: debhelper (>= 9.0.0), cmake, libfltk1.1-dev, libgl1-mesa-dev, libglu1-mesa-dev, libgtk2.0-dev, libjpeg62-turbo-dev, libltdl-dev, libtool, pkg-config
+Homepage: http://rtv.github.com/Stage
+Standards-Version: 3.9.2
+
+Package: ros-kinetic-stage
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libfltk1.1-dev, libgl1-mesa-dev, libglu1-mesa-dev, libgtk2.0-dev, libjpeg62-turbo-dev, ros-kinetic-catkin
+Description: Mobile robot simulator http://rtv.github.com/Stage
