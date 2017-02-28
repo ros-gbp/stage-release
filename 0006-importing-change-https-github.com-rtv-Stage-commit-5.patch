@@ -1,4 +1,4 @@
-From c9502666a16261ab0cffb7d00c71258fcc5e40aa Mon Sep 17 00:00:00 2001
+From c41493041c1f6e5edae9966d640949bf1ba94be2 Mon Sep 17 00:00:00 2001
 From: William Woodall <william@osrfoundation.org>
 Date: Wed, 16 Sep 2015 14:19:55 -0700
 Subject: [PATCH 6/9] importing change
@@ -100,5 +100,5 @@ index 8d63f01..c74bde2 100644
 +Libs: -L${prefix}/@PROJECT_LIB_DIR@ -lstage @PC_LINK_FLAGS@
 +Cflags: -I${prefix}/include/Stage-@APIVERSION@ @PC_INCLUDE_FLAGS@
 -- 
-2.6.4 (Apple Git-63)
+2.9.0
 

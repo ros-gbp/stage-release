@@ -1,4 +1,4 @@
-From 342ec524a83c25614ef0df15d6c742472322f915 Mon Sep 17 00:00:00 2001
+From 7a7177a3e54adcd89703c2992388a35cf091e4d5 Mon Sep 17 00:00:00 2001
 From: William Woodall <william@osrfoundation.org>
 Date: Wed, 23 Sep 2015 14:19:55 -0700
 Subject: [PATCH 9/9] fix stage config file (even for saucy)
@@ -68,5 +68,5 @@ index 8683807..676157c 100644
    "@OPENGL_gl_LIBRARIES@")
    
 -- 
-2.6.4 (Apple Git-63)
+2.9.0
 

@@ -1,4 +1,4 @@
-From 2279a25b39e5c631e4a04e54f69a0986aaee6d99 Mon Sep 17 00:00:00 2001
+From 03fd8949b9b25b8d3d64fcf7fd9dbfff7aff91e9 Mon Sep 17 00:00:00 2001
 From: William Woodall <william@osrfoundation.org>
 Date: Tue, 22 Sep 2015 14:19:55 -0700
 Subject: [PATCH 8/9] fix stage cmake config and make it relocatable
@@ -27,5 +27,5 @@ index 6b60ce6..8683807 100644
    "@OPENGL_gl_LIBRARIES@")
    
 -- 
-2.6.4 (Apple Git-63)
+2.9.0
 

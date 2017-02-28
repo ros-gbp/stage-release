@@ -1,4 +1,4 @@
-From 198ed16f3784ae9b640c89306e88a776a8d034ae Mon Sep 17 00:00:00 2001
+From d48e352ea545fad0e6f16903a2923a82eedf842b Mon Sep 17 00:00:00 2001
 From: William Woodall <william@osrfoundation.org>
 Date: Wed, 26 Jun 2013 19:42:32 -0700
 Subject: [PATCH 1/9] Adding install rule for package.xml
@@ -22,5 +22,5 @@ index 8710637..cdc5476 100644
  
  # all targets need these include directories
 -- 
-2.6.4 (Apple Git-63)
+2.9.0
 
