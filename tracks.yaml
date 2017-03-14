@@ -104,7 +104,7 @@ tracks:
     last_version: 4.1.1
     name: stage
     patches: lunar
-    release_inc: '0'
+    release_inc: '1'
     release_repo_url: null
     release_tag: v:{version}
     ros_distro: lunar
