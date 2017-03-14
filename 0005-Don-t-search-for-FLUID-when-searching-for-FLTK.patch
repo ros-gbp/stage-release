@@ -1,7 +1,7 @@
-From 3d17a9f4bd3d62f7169aee4870b4f5d4a6ac2db0 Mon Sep 17 00:00:00 2001
+From 60b1a3c63a67e42ec6a274a233b73f9de7f7831f Mon Sep 17 00:00:00 2001
 From: Rich Mattes <richmattes@gmail.com>
 Date: Mon, 23 Mar 2015 18:53:12 -0400
-Subject: [PATCH 5/9] Don't search for FLUID when searching for FLTK
+Subject: [PATCH 05/10] Don't search for FLUID when searching for FLTK
 
 Stage doesn't need FLUID to be available during build time, but the
 CMake FindFLTK package searches for it by default in newer versions.

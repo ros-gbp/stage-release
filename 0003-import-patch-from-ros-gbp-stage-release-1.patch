@@ -1,7 +1,7 @@
-From d43257bc0de75b642c42369cf8c874d69746c03f Mon Sep 17 00:00:00 2001
+From 0e29154706683f7f70ae27fd7daffb8ac601629c Mon Sep 17 00:00:00 2001
 From: William Woodall <william@osrfoundation.org>
 Date: Sun, 26 Jan 2014 14:20:36 -0600
-Subject: [PATCH 3/9] import patch from ros-gbp/stage-release#1
+Subject: [PATCH 03/10] import patch from ros-gbp/stage-release#1
 
 patch comes from:
 
