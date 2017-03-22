@@ -1,7 +1,7 @@
-From 4062fbe8d51f8b2f04633b4d8498770cb37fcc78 Mon Sep 17 00:00:00 2001
+From b02a2180006c3781a7d06711082db03e219bd05f Mon Sep 17 00:00:00 2001
 From: William Woodall <william@osrfoundation.org>
 Date: Wed, 23 Sep 2015 14:19:55 -0700
-Subject: [PATCH 09/10] fix stage config file (even for saucy)
+Subject: [PATCH 09/11] fix stage config file (even for saucy)
 
 ---
  CMakeLists.txt        | 28 +++++++++++++++++++---------

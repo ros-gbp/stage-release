@@ -1,7 +1,7 @@
-From e2503526468b133fd2bf2c32d9c85a70eb074f44 Mon Sep 17 00:00:00 2001
+From 02121868ee761322b8bbd0c07d56e10ac4c0415b Mon Sep 17 00:00:00 2001
 From: William Woodall <william@osrfoundation.org>
 Date: Tue, 22 Sep 2015 14:19:55 -0700
-Subject: [PATCH 08/10] fix stage cmake config and make it relocatable
+Subject: [PATCH 08/11] fix stage cmake config and make it relocatable
 
 ---
  stage-config.cmake.in | 4 ++--

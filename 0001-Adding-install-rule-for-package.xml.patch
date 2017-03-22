@@ -1,7 +1,7 @@
-From 2b48d37ef9bbcad7944455d0e8fbd5093c10834e Mon Sep 17 00:00:00 2001
+From 014ef4e7f60b7e91d08738bdc91e452d97f3e90e Mon Sep 17 00:00:00 2001
 From: William Woodall <william@osrfoundation.org>
 Date: Wed, 26 Jun 2013 19:42:32 -0700
-Subject: [PATCH 01/10] Adding install rule for package.xml
+Subject: [PATCH 01/11] Adding install rule for package.xml
 
 ---
  CMakeLists.txt | 3 +++

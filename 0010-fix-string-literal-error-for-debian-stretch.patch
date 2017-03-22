@@ -1,7 +1,7 @@
-From e853df90c45f2c765b0f1246afc23fb7be946d2b Mon Sep 17 00:00:00 2001
+From 7e158e38766735830bad0beb28fe0a132947fcf9 Mon Sep 17 00:00:00 2001
 From: William Woodall <william@osrfoundation.org>
 Date: Mon, 13 Mar 2017 18:56:51 -0700
-Subject: [PATCH 10/10] fix string literal error for debian stretch
+Subject: [PATCH 10/11] fix string literal error for debian stretch
 
 ---
  libstage/stage.hh | 60 +++++++++++++++++++++++++++----------------------------
