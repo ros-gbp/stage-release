@@ -6,6 +6,33 @@ These are the Stage release notes.
 For introduction and license see README.txt
 For installation notes see INSTALL.txt
 
+Version 4.3.0
+-------------
+* gratefully merged Adrian Böckenkamp's (CodeFinder2) fork upstream into rtv/Stage.
+* fixed corrupted strings in GUI bug
+* fixed ranger visualizations bug (only showed up on some platform/driver combos)
+* build/install changes to play nicely with ROS (for the Lunar release of stage_ros)
+
+Richard Vaughan (rtv) vaughan@sfu.ca - 2017.4.27
+
+Version 4.2.1
+-------------
+* add 'confirm_on_quit' option to world section to skip confirmation dialog on exit
+* add continuous integration support by Travis CI
+* fix segfault in ranger visualization
+* fix segfault in blockgroup.cc:236 (gluTessEndPolygon()) when model size (x,y,z) is 0.0
+* minor UI improvments (allow changing Stage's caption, allow centering the window)
+* add ability to load worlds/models from std::istream for more flexibility
+* fix compiler errors in debug build
+* make odom integration error publicly accessible (see #67)
+* don't crash/segfault in ctrl/wander when there's only 1 range sensor (see #59)
+* fix errors reported by the most recent gcc 6.3.1 (on Debian 9 SID), #63 in particular
+* improve/unify coding style (strip trailing spaces, use clang-format)
+* fix compiler error reported with strict flags (-Wall -Wextra -pedantic -Werror)
+* fix issues reported by cppcheck v1.72
+* minor updates in docs (cosmetics, make comments visible in doxygen)
+
+Adrian Böckenkamp (CodeFinder2) boeckenkamp@ls7.cs.tu-dortmund.de - 2017.3.23
 
 Version 4.1.1
 -------------

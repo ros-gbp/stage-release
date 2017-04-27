@@ -1,8 +1,9 @@
+cmake_minimum_required( VERSION 2.8.7 FATAL_ERROR )
 PROJECT(Stage)
 
 SET( V_MAJOR 4 )
-SET( V_MINOR 1 )
-SET( V_BUGFIX 1 )
+SET( V_MINOR 3 )
+SET( V_BUGFIX 0 )
 
 SET( VERSION ${V_MAJOR}.${V_MINOR}.${V_BUGFIX} )
 SET( APIVERSION ${V_MAJOR}.${V_MINOR} )
@@ -16,8 +17,6 @@ OPTION (CPACK_CFG "[release building] generate CPack configuration files" ON)
 
 # todo - this doesn't work yet. Run Stage headless with -g.
 # OPTION (BUILD_GUI "Build FLTK-based GUI. If OFF, build a gui-less Stage useful e.g. for headless compute clusters." ON ) 
-
-cmake_minimum_required( VERSION 2.4 FATAL_ERROR )
 
 IF (CMAKE_MAJOR_VERSION EQUAL 2 AND NOT CMAKE_MINOR_VERSION LESS 6)
 	cmake_policy( SET CMP0003 NEW )
@@ -39,19 +38,23 @@ IF (NOT PROJECT_OS_WIN AND NOT PROJECT_OS_SOLARIS)
     SET (WALL "-Wall " )
 ENDIF (NOT PROJECT_OS_WIN AND NOT PROJECT_OS_SOLARIS)
 
+if( PROJECT_OS_OSX )
+  set(CMAKE_MACOSX_RPATH 1)
+  # uncomment this to force 32bit on OS X, for example if you can't build FLTK 64bit
+  #SET( FORCE_ARCH "-arch i386" )
+
+  # suppress warnings about deprecated stuff. Forgive an old project!
+  SET( WALL "-Wall -Wno-deprecated-declarations" )
+
+endif( PROJECT_OS_OSX)
+
 #####################################
 # Build type cflags
 SET (OPTIMIZE "-O2")
 
-# uncomment this to force 32bit on OS X, for example if you can't build FLTK 64bit
-# e.g. using MacPorts on 10.6 Snow Leopard
-#if( PROJECT_OS_OSX )
-#  SET( FORCE_ARCH "-arch i386" )
-#endif( PROJECT_OS_OSX)
-
-SET (CMAKE_CXX_FLAGS_RELEASE " ${FORCE_ARCH} ${OPTIMIZE} -DNDEBUG ${WALL} " CACHE INTERNAL "C Flags for release" FORCE)
-SET (CMAKE_CXX_FLAGS_DEBUG " -ggdb  ${FORCE_ARCH} ${WALL} " CACHE INTERNAL "C Flags for debug" FORCE)
-SET (CMAKE_CXX_FLAGS_PROFILE " -ggdb -pg  ${FORCE_ARCH} ${WALL} " CACHE INTERNAL "C Flags for profile" FORCE)
+SET (CMAKE_CXX_FLAGS_RELEASE "${FORCE_ARCH} ${OPTIMIZE} -DNDEBUG ${WALL}" CACHE INTERNAL "CXX Flags for release" FORCE)
+SET (CMAKE_CXX_FLAGS_DEBUG "-ggdb  ${FORCE_ARCH} ${WALL} -DDEBUG" CACHE INTERNAL "CXX Flags for debug" FORCE)
+SET (CMAKE_CXX_FLAGS_PROFILE "-ggdb -pg  ${FORCE_ARCH} ${WALL}" CACHE INTERNAL "CXX Flags for profile" FORCE)
 
 #####################################
 # Set the default build type
@@ -84,59 +87,57 @@ include_directories(
 
 MESSAGE( STATUS "Checking for required libraries..." )
 
-SET( INDENT "  * " )
-
 find_package( JPEG REQUIRED )
-IF( JPEG_FOUND )
-  #MESSAGE( STATUS ${INDENT} "JPEG_INCLUDE_DIR = ${JPEG_INCLUDE_DIR}" )
-  #MESSAGE( STATUS ${INDENT} "JPEG_LIBRARIES = ${JPEG_LIBRARIES}" ) 
-ELSE( JPEG_FOUND )
-   MESSAGE( ${INDENT} "JPEG library not detected" )
-ENDIF( JPEG_FOUND )
 
 find_package( PNG REQUIRED )
-IF( PNG_FOUND )
-#  MESSAGE( STATUS ${INDENT} "PNG_INCLUDE_DIR = ${PNG_INCLUDE_DIR}" )
-#  MESSAGE( STATUS ${INDENT} "PNG_LIBRARIES = ${PNG_LIBRARIES}" ) 
-ELSE( PNG_FOUND )
-   MESSAGE( ${INDENT} "PNG library not detected" )
-ENDIF( PNG_FOUND )
-   
-find_package( FLTK REQUIRED )
-IF( FLTK_FOUND )
-#  MESSAGE( STATUS ${INDENT} "FLTK_LIBRARIES=${FLTK_LIBRARIES}" )
-#  MESSAGE( STATUS ${INDENT} "FLTK_INCLUDE_DIR=${FLTK_INCLUDE_DIR}" )
-ELSE( FLTK_FOUND )
-  MESSAGE( FATAL_ERROR "FLTK not found, aborting" )
-ENDIF( FLTK_FOUND )
 
+# deal with new missing X11 on OS X 10.8 Mountain Lion
+# todo: fix this properly
+# SET( PNG_LIBRARIES /opt/X11/lib/libpng.dylib )
+# SET( PNG_INCLUDE_DIR /opt/X11/include )
+
+set (FLTK_SKIP_FLUID TRUE) 
+find_package( FLTK REQUIRED )
 find_package( OpenGL REQUIRED )
+
 IF( NOT OPENGL_GLU_FOUND )
   MESSAGE( FATAL_ERROR "OpenGL GLU not found, aborting" )
 ENDIF( NOT OPENGL_GLU_FOUND )
-#MESSAGE( STATUS ${INDENT} "OpenGL GLU found at ${OPENGL_INCLUDE_DIR}" )
-#MESSAGE( STATUS "    OPENGL_INCLUDE_DIR = ${OPENGL_INCLUDE_DIR}")
-#MESSAGE( STATUS "    OPENGL_glu_LIBRARY = ${OPENGL_glu_LIBRARY}")
 
+SET( INDENT "  * " )
+# MESSAGE( STATUS ${INDENT} "JPEG_INCLUDE_DIR = ${JPEG_INCLUDE_DIR}" )
+# MESSAGE( STATUS ${INDENT} "JPEG_LIBRARIES = ${JPEG_LIBRARIES}" ) 
+# MESSAGE( STATUS ${INDENT} "PNG_INCLUDE_DIR = ${PNG_INCLUDE_DIR}" )
+# MESSAGE( STATUS ${INDENT} "PNG_LIBRARIES = ${PNG_LIBRARIES}" ) 
+# MESSAGE( STATUS ${INDENT} "FLTK_LIBRARIES=${FLTK_LIBRARIES}" )
+# MESSAGE( STATUS ${INDENT} "FLTK_INCLUDE_DIR=${FLTK_INCLUDE_DIR}" )
+# MESSAGE( STATUS ${INDENT} "OpenGL GLU found at ${OPENGL_INCLUDE_DIR}" )
+# MESSAGE( STATUS "    OPENGL_INCLUDE_DIR = ${OPENGL_INCLUDE_DIR}")
+# MESSAGE( STATUS "    OPENGL_glu_LIBRARY = ${OPENGL_glu_LIBRARY}")
 
 MESSAGE( STATUS "Checking for optional libraries..." )
 
-# Player does not have a CMake package, but does provide pkgconfig info
+# Format the fltk libraries for inclusion in stage.pc
+SET(PC_LIBRARIES ${FLTK_LIBRARIES} ${OPENGL_LIBRARIES})
+SET(PC_INCLUDE_DIRS ${FLTK_INCLUDE_DIR} ${OPENGL_INCLUDE_DIR})
 
-include(FindPkgConfig)
+SET(PC_LINK_FLAGS "")
+FOREACH(LIB ${PC_LIBRARIES})
+  GET_FILENAME_COMPONENT(LIBNAME ${LIB} NAME_WE)
+  STRING(REGEX REPLACE "^lib" "" LINKLIB ${LIBNAME})
+  SET(PC_LINK_FLAGS "${PC_LINK_FLAGS} -l${LINKLIB}")
+ENDFOREACH(LIB ${FLTK_LIBRARIES})
 
-pkg_search_module( PLAYER playercore>=2.1.0 ) 
-IF( PLAYER_FOUND )
-  MESSAGE( STATUS ${INDENT} "Player version ${PLAYER_VERSION} detected at ${PLAYER_PREFIX}" )
-  MESSAGE( STATUS "    PLAYER_CFLAGS: ${PLAYER_CFLAGS}" )
-  MESSAGE( STATUS "    PLAYER_LDFLAGS: ${PLAYER_LDFLAGS}"  )
-ELSE( PLAYER_FOUND )
-  MESSAGE(STATUS ${INDENT} "Player not detected. If Player is installed but not detected, check your PKG_CONFIG_PATH." )
-ENDIF( PLAYER_FOUND )
+SET(PC_INCLUDE_FLAGS "")
+FOREACH(INC ${PC_INCLUDE_DIRS})
+  SET(PC_INCLUDE_FLAGS "${PC_INCLUDE_FLAGS} -I${INC}")
+ENDFOREACH(INC ${PC_INCLUDE_DIRS})
 
 # Create the pkgconfig file
 CONFIGURE_FILE (${CMAKE_CURRENT_SOURCE_DIR}/stage.pc.in ${CMAKE_CURRENT_BINARY_DIR}/stage.pc @ONLY)
 INSTALL (FILES ${CMAKE_CURRENT_BINARY_DIR}/stage.pc DESTINATION ${PROJECT_LIB_DIR}/pkgconfig/)
+
+
 
 MESSAGE( STATUS "Installation path CMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}" )
 
@@ -158,18 +159,50 @@ ADD_SUBDIRECTORY(assets)
 ADD_SUBDIRECTORY(worlds)
 #ADD_SUBDIRECTORY(avonstage)		 
 
-IF ( BUILD_PLAYER_PLUGIN AND PLAYER_FOUND )
-  ADD_SUBDIRECTORY(libstageplugin)
-ENDIF ( BUILD_PLAYER_PLUGIN AND PLAYER_FOUND )	 
+IF ( BUILD_PLAYER_PLUGIN )
+  # Player does not have a CMake package, but does provide pkgconfig info
+  include(FindPkgConfig)
+  pkg_search_module( PLAYER playercore>=2.1.0 ) 
+  IF( PLAYER_FOUND )
+    MESSAGE( STATUS ${INDENT} "Player version ${PLAYER_VERSION} detected at ${PLAYER_PREFIX}" )
+    MESSAGE( STATUS "    PLAYER_CFLAGS: ${PLAYER_CFLAGS}" )
+    MESSAGE( STATUS "    PLAYER_LDFLAGS: ${PLAYER_LDFLAGS}"  )
+  ELSE( PLAYER_FOUND )
+    MESSAGE(STATUS ${INDENT} "Player not detected. If Player is installed but not detected, check your PKG_CONFIG_PATH." )
+  ENDIF( PLAYER_FOUND )
 
+  IF ( PLAYER_FOUND )
+    ADD_SUBDIRECTORY(libstageplugin)
+  ENDIF ( PLAYER_FOUND )
+ENDIF ( BUILD_PLAYER_PLUGIN )
+
+# Create the CMake module files (needs to be run after the stage target was created)
+if (${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}.${CMAKE_PATCH_VERSION} GREATER 2.8.11)
+  # Use a generator expression if the version of cmake allows it.
+  set(STAGE_TARGET_NAME "$<TARGET_FILE_NAME:stage>")
+else()
+  # Otherwise use the LOCATION property of the target (this will produce a warning on newer versions of cmake)
+  get_property(location_ TARGET stage PROPERTY LOCATION)
+  get_filename_component(STAGE_TARGET_NAME "${location_}" NAME)
+  unset(location_)
+endif()
+CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/stage-config.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/stage-config.cmake @ONLY)
+if (${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}.${CMAKE_PATCH_VERSION} GREATER 2.8.11)
+  # Also run it through file(GENERATE ...) to expand generator expressions (if the version of cmake supports it).
+  FILE (GENERATE
+    OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/stage-config.cmake
+    INPUT ${CMAKE_CURRENT_BINARY_DIR}/stage-config.cmake)
+endif()
+CONFIGURE_FILE (${CMAKE_CURRENT_SOURCE_DIR}/stage-config-version.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/stage-config-version.cmake @ONLY)
+INSTALL (FILES ${CMAKE_CURRENT_BINARY_DIR}/stage-config.cmake ${CMAKE_CURRENT_BINARY_DIR}/stage-config-version.cmake DESTINATION ${PROJECT_LIB_DIR}/cmake/${PROJECT_NAME})
 
 # generate a cpack config file used to create packaged tarballs
 IF ( CPACK_CFG )
   INCLUDE(InstallRequiredSystemLibraries)
   SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "${PROJECT_NAME}: A Multiple Robot Simulator")
   SET(CPACK_PACKAGE_VENDOR "The Player Project")
-  SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/README.txt")
-  SET(CPACK_RESOURCE_FILE_README "${CMAKE_CURRENT_SOURCE_DIR}/README.txt")
+  SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
+  SET(CPACK_RESOURCE_FILE_README "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
   SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/COPYING.txt")
   SET(CPACK_PACKAGE_VERSION_MAJOR "${V_MAJOR}")
   SET(CPACK_PACKAGE_VERSION_MINOR "${V_MINOR}")
