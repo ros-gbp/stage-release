@@ -7,16 +7,17 @@ include "pioneer.inc"
 include "map.inc"
 include "sick.inc"
 
-speedup -1
+interval_sim 20
+speedup 100
 paused 0
 
 # time at which to pause (in GUI mode) or quit (in headless mode) the simulation
-quit_time 3600 # 1 hour of simulated time
-#quit_time 1800 # 30 mins of simulated time
+#quit_time 3600 # 1 hour of simulated time
+quit_time 1800 # 30 mins of simulated time
 
 resolution 0.02
 
-threads 4
+threads 2
 
 # configure the GUI window
 window
@@ -44,19 +45,24 @@ floorplan
 
 zone
 (
-  size [ 2.000 2.000 0 ]
+  size [ 2.000 2.000 0.01 ]
   color "green"
   pose [ -7.000 -7.000 0 0 ]
   name "source"
-  ctrl "source 100 1"
+
+  ctrl "source 1" # argument is the local storage capacity
+
+  # will replace consumed flags every update, so call only occasionally
+  update_interval 10000 
 )
 
 zone
 (
-  size [ 2.000 2.000 0 ]
+  size [ 2.000 2.000 0.01 ]
   color "red"
   pose [ 7.000 7.000 0 0 ]
   name "sink"
+ 
   ctrl "sink"
 )
 
@@ -107,8 +113,14 @@ charge_station(  pose [ 6.427 -0.964 0 74.484 ] )
 
 define autorob pioneer2dx		  
 (		 
- sickbase( sensor( samples 32 range [0 3] fov 180 color_rgba [ 0 0 1 0.15 ] ) 
-  				 ranger_return 2.000 watts 30 )
+ sickbase( sensor( samples 32 
+                   range [0 3] 
+                   fov 180
+                   color_rgba [0 0 1 0.15] ) 
+#                   color "yellow" ) 
+
+     	    ranger_return 2.000 watts 30 
+)
 
  ctrl "fasr"
 # kjoules 400 
