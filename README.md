@@ -1,3 +1,26 @@
+## stage (lunar) - 4.3.0-0
+
+The packages in the `stage` repository were released into the `lunar` distro by running `/usr/local/bin/bloom-release -r lunar -t lunar stage` on `Thu, 27 Apr 2017 18:53:53 -0000`
+
+The `stage` package was released.
+
+Version of package(s) in repository `stage`:
+
+- upstream repository: https://github.com/rtv/Stage.git
+- release repository: https://github.com/ros-gbp/stage-release.git
+- rosdistro version: `4.1.1-2`
+- old version: `4.1.1-2`
+- new version: `4.3.0-0`
+
+Versions of tools used:
+
+- bloom version: `0.5.26`
+- catkin_pkg version: `0.3.1`
+- rosdep version: `0.11.5`
+- rosdistro version: `0.6.2`
+- vcstools version: `0.1.39`
+
+
 ## stage (lunar) - 4.1.1-2
 
 The packages in the `stage` repository were released into the `lunar` distro by running `/usr/local/bin/bloom-release -r lunar -t lunar stage` on `Wed, 22 Mar 2017 20:21:31 -0000`
