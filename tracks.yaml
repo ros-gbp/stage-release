@@ -101,10 +101,10 @@ tracks:
     - git-bloom-generate -y rosrpm --prefix release/:{ros_distro} :{ros_distro} -i
       :{release_inc}
     devel_branch: null
-    last_version: 4.1.1
+    last_version: 4.3.0
     name: stage
     patches: lunar
-    release_inc: '2'
+    release_inc: '0'
     release_repo_url: null
     release_tag: v:{version}
     ros_distro: lunar
