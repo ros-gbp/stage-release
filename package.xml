@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>stage</name>
-  <version>4.1.1</version>
+  <version>4.3.0</version>
   <description>Mobile robot simulator http://rtv.github.com/Stage</description>
 
   <!-- William is the mantainer/releaser for stage in ROS -->
