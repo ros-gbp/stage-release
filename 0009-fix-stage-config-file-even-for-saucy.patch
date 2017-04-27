@@ -1,4 +1,4 @@
-From b02a2180006c3781a7d06711082db03e219bd05f Mon Sep 17 00:00:00 2001
+From 04ce5a2fb8c45dd1a93cbfcfc0d70cb6eacfd82e Mon Sep 17 00:00:00 2001
 From: William Woodall <william@osrfoundation.org>
 Date: Wed, 23 Sep 2015 14:19:55 -0700
 Subject: [PATCH 09/11] fix stage config file (even for saucy)

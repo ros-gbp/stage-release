@@ -1,4 +1,4 @@
-From 31821420c210f061fc3ca2e3d327701909d6c13d Mon Sep 17 00:00:00 2001
+From 9c79c7f2eefcb2f69ca3118fdaaba754e53a7add Mon Sep 17 00:00:00 2001
 From: William Woodall <william@osrfoundation.org>
 Date: Mon, 21 Sep 2015 14:19:55 -0700
 Subject: [PATCH 07/11] fix compiling on OS X

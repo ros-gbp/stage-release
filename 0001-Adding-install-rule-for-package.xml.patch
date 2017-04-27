@@ -1,4 +1,4 @@
-From 014ef4e7f60b7e91d08738bdc91e452d97f3e90e Mon Sep 17 00:00:00 2001
+From c5b4567635cbf1838860aa167bc35e6894033546 Mon Sep 17 00:00:00 2001
 From: William Woodall <william@osrfoundation.org>
 Date: Wed, 26 Jun 2013 19:42:32 -0700
 Subject: [PATCH 01/11] Adding install rule for package.xml

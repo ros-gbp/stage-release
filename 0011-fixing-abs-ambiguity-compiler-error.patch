@@ -1,4 +1,4 @@
-From 406426db2642fd8dc4de2361b1cd8ae97ae7cbeb Mon Sep 17 00:00:00 2001
+From ece1cc818fa754a5e244110aa89484c565014454 Mon Sep 17 00:00:00 2001
 From: William Woodall <william@osrfoundation.org>
 Date: Wed, 22 Mar 2017 12:02:06 -0700
 Subject: [PATCH 11/11] fixing abs ambiguity compiler error

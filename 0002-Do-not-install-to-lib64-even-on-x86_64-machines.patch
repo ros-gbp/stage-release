@@ -1,4 +1,4 @@
-From d0eeb1ff79a9dcbcfedfda7e2cea0fd14c9bdc3f Mon Sep 17 00:00:00 2001
+From 2b6b74be7c97e450914cfb71e75ac69d6cd98445 Mon Sep 17 00:00:00 2001
 From: William Woodall <william@osrfoundation.org>
 Date: Thu, 27 Jun 2013 13:35:25 -0700
 Subject: [PATCH 02/11] Do not install to lib64, even on x86_64 machines
