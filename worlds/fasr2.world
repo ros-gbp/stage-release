@@ -16,7 +16,7 @@ paused 0
 
 resolution 0.02
 
-threads 4	 
+threads 2	 
 
 # configure the GUI window
 window
@@ -47,7 +47,7 @@ floorplan
 zone( color "red"
   pose [ 18.000 43.000 0 0 ]
   name "red_source"
-  ctrl "source 100 10"
+  ctrl "source 10 10"
 )
 
 zone( color "DarkRed"
@@ -222,7 +222,7 @@ define blinker model
 
 define autorob pioneer2dx		  
 (		 
- sickbase( sensor( samples 32 range [0 2] fov 180 color "blue" ) ranger_return 2 watts 30  )
+ sickbase( sensor( samples 32 range [0 2] fov 180 color_rgba [0 0 1 0.15] ) ranger_return 2 watts 30  )
 
 # ctrl "fasr2"
  kjoules 400 
