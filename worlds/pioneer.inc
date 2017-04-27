@@ -12,12 +12,10 @@ define p2dxsonar sensor
   size [0.01 0.05 0.01 ] 
   # define the range bounds [min max]
   range [0 5.0]
-	# define the angular field of view in degrees
-	fov 15
-	# define the number of samples spread over the fov
+  # define the angular field of view in degrees
+  fov 15
+  # define the number of samples spread over the fov
   samples 1
-	# define the color that ranges are drawn in the gui
-	color_rgba [ 0 1 0 0.2 ] 
 )
 
 define p2dx_sonar ranger
@@ -171,7 +169,8 @@ define pioneer2dx pioneer2dx_base
     points 8
     point[0] [-0.2 0.12]
     point[1] [-0.2 -0.12]
-    point[2] [-0.12 -0.2555]
+    point[2] [-0.12 -0.2555 ]
+
     point[3] [0.12 -0.2555]
     point[4] [0.2 -0.12]
     point[5] [0.2 0.12]
@@ -265,7 +264,6 @@ define fancypioneer2dx pioneer2dx_base
     point[2] [ -0.083  0.140 ]
     point[3] [  0.083  0.140 ]
     z [0 0.165 ]
-    color "gray15"
   )
 
   # right wheel
@@ -277,7 +275,6 @@ define fancypioneer2dx pioneer2dx_base
     point[2] [ -0.083  -0.177 ]
     point[3] [  0.083  -0.177 ]
     z [ 0 0.165 ]
-    color "gray15"
   )
 
   # castor
@@ -289,7 +286,6 @@ define fancypioneer2dx pioneer2dx_base
     point[1] [ -0.1825 -0.012 ]
     point[0] [ -0.2475 -0.012 ]
     z [ 0 0.065 ]
-    color "gray15"
   )
  
   # lid
@@ -319,10 +315,6 @@ define fancypioneer2dx pioneer2dx_base
     point[1] [  0.145  0.107 ]
     point[0] [  0.166  0.056 ]
     z [ 0.234 0.24 ]
-
-    # a dark top looks more realistic, but isn't very useful 
-    # for a top-down view
-    #color "gray10"
   )
 )
 
