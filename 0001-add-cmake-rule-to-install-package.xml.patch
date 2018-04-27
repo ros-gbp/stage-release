@@ -22,5 +22,5 @@ index bc562d0..fe871e4 100644
  MESSAGE( STATUS "Installation path CMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}" )
  
 -- 
-2.9.0
+2.15.1 (Apple Git-101)
 
