@@ -1,0 +1,12 @@
+Source: ros-noetic-stage
+Section: misc
+Priority: optional
+Maintainer: William Woodall <william@osrfoundation.org>
+Build-Depends: debhelper (>= 9.0.0), cmake, libfltk1.3-dev, libgl1-mesa-dev, libglu1-mesa-dev, libgtk2.0-dev, libjpeg-dev, libltdl-dev, libtool, libtool-bin, pkg-config
+Homepage: http://rtv.github.com/Stage
+Standards-Version: 3.9.2
+
+Package: ros-noetic-stage
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libfltk1.3-dev, libgl1-mesa-dev, libglu1-mesa-dev, libgtk2.0-dev, libjpeg-dev, ros-noetic-catkin
+Description: Mobile robot simulator http://rtv.github.com/Stage
