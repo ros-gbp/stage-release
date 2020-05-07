@@ -1,3 +1,26 @@
+## stage (noetic) - 4.3.0-1
+
+The packages in the `stage` repository were released into the `noetic` distro by running `/usr/local/bin/bloom-release -r noetic -t noetic stage` on `Thu, 07 May 2020 21:02:55 -0000`
+
+The `stage` package was released.
+
+Version of package(s) in repository `stage`:
+
+- upstream repository: https://github.com/rtv/Stage.git
+- release repository: unknown
+- rosdistro version: `null`
+- old version: `null`
+- new version: `4.3.0-1`
+
+Versions of tools used:
+
+- bloom version: `0.9.7`
+- catkin_pkg version: `0.4.16`
+- rosdep version: `0.18.0`
+- rosdistro version: `0.8.0`
+- vcstools version: `0.1.42`
+
+
 ## stage (melodic) - 4.3.0-0
 
 The packages in the `stage` repository were released into the `melodic` distro by running `/usr/local/opt/python2/Frameworks/Python.framework/Versions/2.7/bin/bloom-release -r melodic -t melodic stage` on `Fri, 27 Apr 2018 17:15:49 -0000`
