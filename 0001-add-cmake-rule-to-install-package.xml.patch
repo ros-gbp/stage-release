@@ -1,4 +1,4 @@
-From 1fb97d9ff639d2279e51c0fa30de5d3b05f2b0bb Mon Sep 17 00:00:00 2001
+From ee98d472a5dce094f09dce29faa5b799561284e4 Mon Sep 17 00:00:00 2001
 From: William Woodall <william@osrfoundation.org>
 Date: Thu, 27 Apr 2017 11:52:32 -0700
 Subject: [PATCH] add cmake rule to install package.xml
@@ -22,5 +22,5 @@ index bc562d0..fe871e4 100644
  MESSAGE( STATUS "Installation path CMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}" )
  
 -- 
-2.15.1 (Apple Git-101)
+2.21.1 (Apple Git-122.3)
 
